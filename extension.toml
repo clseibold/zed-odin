@@ -10,6 +10,6 @@ repository = "https://github.com/clseibold/zed-odin"
 name = "ols"
 language = "Odin"
 
-[grammars.zig]
+[grammars.odin]
 repository = "https://github.com/tree-sitter-grammars/tree-sitter-odin"
 commit = "b5f668ef8918aab13812ce73acd89fe191fb8c5e"

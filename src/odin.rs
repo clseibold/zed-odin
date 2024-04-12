@@ -37,19 +37,19 @@ impl OdinExtension {
 
         let (platform, arch) = zed::current_platform();
         let asset_name = format!(
-            "zls-{arch}-{os}.{extension}",
+            "ols-{arch}-{os}.{extension}",
             arch = match arch {
-                zed::Architecture::Aarch64 => "aarch64",
+                zed::Architecture::Aarch64 => "arm64",
                 zed::Architecture::X86 => "x86",
                 zed::Architecture::X8664 => "x86_64",
             },
             os = match platform {
-                zed::Os::Mac => "macos",
-                zed::Os::Linux => "linux",
-                zed::Os::Windows => "windows",
+                zed::Os::Mac => "darwin",
+                zed::Os::Linux => "unknown-linux-gnu",
+                zed::Os::Windows => "windows-msvc",
             },
             extension = match platform {
-                zed::Os::Mac | zed::Os::Linux => "tar.gz",
+                zed::Os::Mac | zed::Os::Linux => "zip",
                 zed::Os::Windows => "zip",
             }
         );
@@ -61,7 +61,21 @@ impl OdinExtension {
             .ok_or_else(|| format!("no asset found matching {:?}", asset_name))?;
 
         let version_dir = format!("ols-{}", release.version);
-        let binary_path = format!("{version_dir}/bin/ols");
+        fs::create_dir_all(&version_dir)
+            .map_err(|err| format!("failed to create directory '{version_dir}': {err}"))?;
+        let binary_path = format!(
+            "{version_dir}/ols-{arch}-{os}",
+            arch = match arch {
+                zed::Architecture::Aarch64 => "arm64",
+                zed::Architecture::X86 => "x86",
+                zed::Architecture::X8664 => "x86_64",
+            },
+            os = match platform {
+                zed::Os::Mac => "darwin",
+                zed::Os::Linux => "unknown-linux-gnu",
+                zed::Os::Windows => "windows-msvc",
+            },
+        );
 
         if !fs::metadata(&binary_path).map_or(false, |stat| stat.is_file()) {
             zed::set_language_server_installation_status(
@@ -73,7 +87,7 @@ impl OdinExtension {
                 &asset.download_url,
                 &version_dir,
                 match platform {
-                    zed::Os::Mac | zed::Os::Linux => zed::DownloadedFileType::GzipTar,
+                    zed::Os::Mac | zed::Os::Linux => zed::DownloadedFileType::Zip,
                     zed::Os::Windows => zed::DownloadedFileType::Zip,
                 },
             )
