@@ -9,4 +9,5 @@
 
 (foreign_block (identifier) @name) @item
 
-(field (identifier) @name ":" (type) @context) @item
+(field ((identifier) @name ":" (type) @context) @item)
+(enum_declaration "{" ((identifier) @name) @item)
