@@ -2,7 +2,12 @@
 name = "zed_odin"
 version = "0.1.0"
 edition = "2021"
-license = "Apache-2.0"
+license = "MIT"
+license-file = "LICENSE"
+description = "Odin support for Zed."
+repository = "https://github.com/clseibold/zed-odin"
+keywords = ["zed", "odin"]
+categories = ["development-tools"]
 
 [lib]
 path = "src/odin.rs"
