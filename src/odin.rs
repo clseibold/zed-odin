@@ -54,7 +54,6 @@ impl OdinExtension {
             }
         );
 
-        // Rust comment
         let asset = release
             .assets
             .iter()

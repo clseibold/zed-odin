@@ -289,7 +289,7 @@
 [
   (comment)
   (block_comment)
-] @comment @spell
+] @comment
 
 ; Errors
 
