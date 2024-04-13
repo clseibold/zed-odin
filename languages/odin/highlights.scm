@@ -111,6 +111,14 @@
 
 (call_expression function: (identifier) @function.call)
 
+; Constants
+
+(const_declaration (identifier) @constant "::")
+
+(member_expression . "." (identifier) @constant)
+
+(enum_declaration "{" (identifier) @constant)
+
 ; Types
 
 (type (identifier) @type)
@@ -158,12 +166,6 @@
 (struct_field (identifier) @variable.member "="?)
 
 (field (identifier) @variable.member)
-
-; Constants
-
-(member_expression . "." (identifier) @constant)
-
-(enum_declaration "{" (identifier) @constant)
 
 ; Macros
 
