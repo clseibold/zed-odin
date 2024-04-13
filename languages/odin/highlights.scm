@@ -3,14 +3,14 @@
 [
   (calling_convention)
   (tag)
-] @preproc
+] @keyword.directive
 
 ; Includes
 
 [
   "import"
   "package"
-] @include
+] @keyword.import
 
 ; Keywords
 
@@ -42,7 +42,7 @@
 [
   "distinct"
   "dynamic"
-] @storageclass
+] @keyword.storage
 
 ; Conditionals
 
@@ -55,7 +55,7 @@
   "where"
   "break"
   (fallthrough_statement)
-] @conditional
+] @keyword.conditional
 
 ((ternary_expression
   [
@@ -64,7 +64,7 @@
     "if"
     "else"
     "when"
-  ] @conditional.ternary)
+  ] @keyword.conditional.ternary)
   (#set! "priority" 105))
 
 ; Repeats
@@ -73,7 +73,7 @@
   "for"
   "do"
   "continue"
-] @repeat
+] @keyword.repeat
 
 ; Variables
 
@@ -81,23 +81,23 @@
 
 ; Namespaces
 
-(package_declaration (identifier) @namespace)
+(package_declaration (identifier) @module)
 
-(import_declaration alias: (identifier) @namespace)
+(import_declaration alias: (identifier) @module)
 
-(foreign_block (identifier) @namespace)
+(foreign_block (identifier) @module)
 
-(using_statement (identifier) @namespace)
+(using_statement (identifier) @module)
 
 ; Parameters
 
-(parameter (identifier) @parameter ":" "="? (identifier)? @constant)
+(parameter (identifier) @variable.parameter ":" "="? (identifier)? @constant)
 
-(default_parameter (identifier) @parameter ":=")
+(default_parameter (identifier) @variable.parameter ":=")
 
-(named_type (identifier) @parameter)
+(named_type (identifier) @variable.parameter)
 
-(call_expression argument: (identifier) @parameter "=")
+(call_expression argument: (identifier) @variable.parameter "=")
 
 ; Functions
 
@@ -141,7 +141,7 @@
 
 (struct . (identifier) @type)
 
-(field_type . (identifier) @namespace "." (identifier) @type)
+(field_type . (identifier) @module "." (identifier) @type)
 
 (bit_set_type (identifier) @type ";")
 
@@ -155,13 +155,13 @@
 
 ; Fields
 
-(member_expression "." (identifier) @field)
+(member_expression "." (identifier) @variable.member)
 
-(struct_type "{" (identifier) @field)
+(struct_type "{" (identifier) @variable.member)
 
-(struct_field (identifier) @field "="?)
+(struct_field (identifier) @variable.member "="?)
 
-(field (identifier) @field)
+(field (identifier) @variable.member)
 
 ; Constants
 
@@ -190,7 +190,7 @@
 
 (number) @number
 
-(float) @float
+(float) @number.float
 
 (string) @string
 
