@@ -149,10 +149,6 @@
 
 (polymorphic_parameters (identifier) @type)
 
-((identifier) @type
-  (#lua-match? @type "^[A-Z][a-zA-Z0-9]*$")
-  (#not-has-parent? @type parameter procedure_declaration))
-
 ; Fields
 
 (member_expression "." (identifier) @variable.member)
@@ -272,7 +268,7 @@
   ","
   ":"
   ";"
-] @punctuation.delimiter
+] @punctuation
 
 
 [
