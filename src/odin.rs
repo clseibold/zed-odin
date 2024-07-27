@@ -46,7 +46,7 @@ impl OdinExtension {
             os = match platform {
                 zed::Os::Mac => "darwin",
                 zed::Os::Linux => "unknown-linux-gnu",
-                zed::Os::Windows => "windows-msvc",
+                zed::Os::Windows => "pc-windows-msvc",
             },
             extension = match platform {
                 zed::Os::Mac | zed::Os::Linux => "zip",
@@ -73,7 +73,7 @@ impl OdinExtension {
             os = match platform {
                 zed::Os::Mac => "darwin",
                 zed::Os::Linux => "unknown-linux-gnu",
-                zed::Os::Windows => "windows-msvc",
+                zed::Os::Windows => "pc-windows-msvc",
             },
         );
 
