@@ -20,8 +20,9 @@
 (block "{" "}" @end) @indent
 (enum_declaration "{" "}" @end) @indent
 (union_declaration "{" "}" @end) @indent
-(struct_declaration "{" "}" @end)
+(struct_declaration "{" "}" @end) @indent
 (struct "{" "}" @end) @indent
+(map "{" "}" @end) @indent
 
 [
   (comment)
