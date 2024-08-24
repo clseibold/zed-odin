@@ -13,17 +13,15 @@
 ; hello(
 ((identifier) . (ERROR "(" @indent.begin))
 
-[
-  ")"
-  "]"
-] @indent.branch @indent.end
+(_ "[" "]" @end) @indent
+(_ "(" ")" @end) @indent
 
 ; Have to do all closing brackets separately because the one for switch statements shouldn't end.
-(block "}" @indent.branch @indent.end)
-(enum_declaration "}" @indent.branch @indent.end)
-(union_declaration "}" @indent.branch @indent.end)
-(struct_declaration "}" @indent.branch @indent.end)
-(struct "}" @indent.branch @indent.end)
+(block "{" "}" @end) @indent
+(enum_declaration "{" "}" @end) @indent
+(union_declaration "{" "}" @end) @indent
+(struct_declaration "{" "}" @end)
+(struct "{" "}" @end) @indent
 
 [
   (comment)
