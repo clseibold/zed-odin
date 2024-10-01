@@ -1,7 +1,7 @@
 id = "odin"
 name = "Odin"
 description = "Odin support."
-version = "0.1.0"
+version = "0.1.1"
 schema_version = 1
 authors = ["Christian Lee Seibold <christian.seibold32@outlook.com"]
 repository = "https://github.com/clseibold/zed-odin"
